@@ -1,4 +1,6 @@
-LeetCode
+Personal Learning
+
+# Arrays
 
 ## Given an array of integres, return the indices of the two numbers that add up to a given target.
 
@@ -61,10 +63,127 @@ function findTwoSum(numbers, target) {
 * T = O(n) also S = O(n)
 
 
+## You are given an array of positive integers where each integer represents the height of a vertical line on a chart. Find two lines which together with the x-axis forms a container that would hold the greatest amount of water. return the area of water it would hold.
+
+![image](https://user-images.githubusercontent.com/27411868/124641595-84e0d380-deac-11eb-9fc1-9f4376830f4f.png)
+
+* Edge condition 1: [] empty array >> return 0
+* Edge condition 2: [7] 1 length array >> return 0
+
+### Working Solution T = O(n ^ 2) and S = O(1)
+```js
+funstion getMaxArea(numbers) {
+  let maxArea = 0;
+  for(let i = 0; i < numbers.length; i++) {
+    for(let j = i+1; j < numbers.length; j++) {
+      const height = Math.min(numbers[i], number[j]);
+      const width = j - i;
+      const area = height * width;
+      if(area > maxArea) {
+        maxArea = area;
+      }
+    }
+  }
+  return maxArea;
+}
+```
+
+### Optimal Solution (using technique two shifting pointers) O(n)
+
+### NOTE: For two pointer we need to find a condition so that we can move one at a point.
+
+```js
+// starts the two pointers from both side of array
+funstion getMaxArea(numbers) {
+  let pointerOne = 0;
+  let pointerTwo = numbers.length - 1;
+  let maxArea = 0;
+  while (pointerOne < pointerTwo) {
+    const height = Math.min(numbers[pointerOne], numbers[pointerTwo]);
+    const width = pointerTwo - pointerOne;
+    const area = height * width;
+    maxArea = Math.max(maxArea, area);
+    if(numbers[pointerOne] =< numbers[pointerTwo]) {
+      pointerOne++;
+    } else {
+      pointerTwo--;
+    }
+  }
+  return maxArea;
+}
+```
+
+
+## Trapping Rainwater, Given an array of integers representing an elevation map where the width of each bar is 1, return how much rainwater can be trapped.
+![image](https://user-images.githubusercontent.com/27411868/124649006-8f539b00-deb5-11eb-8ece-2237fb81a407.png)
+
+Answer is 8 in the above figure.
+
+* Edge Condition 1: [] empty array, return 0
+* Edge Condition 2: [1] one length, return 0
+* Edge Condition 3: [4,4,3], return 0 because the graph is full from left side, and open in right side 
+
+* We have to find MAX values to the left Max value sto the right and inbetween these two the blocks will simpally minus from area.
+
+### Working Solution: O(n ^ 2)
+```js
+function getTrappedWater(numbers) {
+  let totalWater = 0;
+  for(let currentNumber = 0; currentNumber< numbers.length; currentNumber++) {
+    let leftOfcurrentNumber = currentNumber;
+    let rightOfcurrentNumber = currentNumber;
+    let maxLeft = 0;
+    let maxRight = 0;
+    while(leftOfcurrentNumber >= 0) {
+      maxLeft = Math.max(maxLeft, numbers[leftOfcurrentNumber]);
+      leftOfcurrentNumber--;
+    }
+    while(rightOfcurrentNumber < numbers.length) {
+      maxRight = Math.max(maxRight, numbers[rightOfcurrentNumber]);
+      rightOfcurrentNumber++;
+    }
+    const currentWater = Math.min(leftOfcurrentNumber, rightOfcurrentNumber) - numbers[currentNumber];
+    if(currentWater > 0) {
+      totalWater += currentWater;
+    }
+  }
+  return totalWater;
+}
+```
+
+### Optimal Solution (two pointer shift technique) O(n):
+```js
+const getTrappedRainwater = function(heights) {
+
+  let left = 0, right = heights.length - 1, totalWater = 0, maxLeft = 0, maxRight = 0;
+  
+  while(left < right) {
+    if(heights[left] <= heights[right]) {
+      if(heights[left] >= maxLeft) { 
+        maxLeft = heights[left]
+      } else { 
+        totalWater += maxLeft - heights[left];
+      }
+      left++;
+    } else {
+      if(heights[right] >= maxRight) {
+          maxRight = heights[right];
+      } else {
+          totalWater += maxRight - heights[right];
+      }
+        
+      right--;
+    }
+  }
+
+  return totalWater;
+}
+```
+
+
+# Strings
 
 
 
 
-
-
-
+LeetCode
