@@ -183,6 +183,63 @@ const getTrappedRainwater = function(heights) {
 
 # Strings
 
+## Given two strings S and T, return if they equal when both are typed out. Any '#' that appears in the string counts as backspace.
+
+* "ab#c" --> typed out string will be "ac"
+* inputs S: "ab#c" T: "az#c"    --> output "ac"
+* Constriant 1: What happens when two #'s appear beside each other? --> Delete the two values before the first #.  "cab###" --> "c"
+* "a###b" --> "b"    (two # wont delete anything).
+* Are two empty strings equal to each other? --> Yes
+* Does case sensitivity matter? --> Yes
+
+### Working solution:
+```js
+const buildString =  function(string) {   // O(n)
+  const finalArray = [];
+  for(let i =0; i < string.length; i++) {
+    if(string[i] !== '#' ) {
+      finalArray.pus(string[i]);
+    } else {
+      finalArray.pop();
+    }
+  }
+  return finalArray;
+}
+
+cont finalSol = function(S, T) {           // So O(2a+b) or O (a+2b) --> ignore constants final O(a+b),   Space is also S(a+b)
+  const finalS = buildString(S); // O(a) size of S
+  const finalT = buildString(T); // O(b) size of S
+  if(finalS.length !== finalT.length) {
+    return false;
+  } else {
+    for(let i = 0; i < finalS.length; i++) {  // either O(a) or O(b)
+      if(finalS[i] !== finalT[i]) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+```
+
+### Optimal solution: reduced the space complexity.
+* Hint: try to utilize the original strings
+* Hint 2: Use the 2 pointer technique
+* Hint 3: Start from the end of the strings
+
+```js
+// for single '#' move pointer -2, but for next concurrent move -2 + -1 and so on....
+
+
+```
+
+
+
+
+
+
+
+
 
 
 
