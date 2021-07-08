@@ -222,7 +222,7 @@ cont finalSol = function(S, T) {           // So O(2a+b) or O (a+2b) --> ignore 
 }
 ```
 
-### Optimal solution: reduced the space complexity.
+### Optimal solution: reduced the space complexity. T O(a+b) S: O(1)
 * Hint: try to utilize the original strings
 * Hint 2: Use the 2 pointer technique
 * Hint 3: Start from the end of the strings
@@ -238,14 +238,99 @@ const finalSol = function(S, T) {
         while(backCount > 0){
           i--;
           backCount--;
+          if(S[i] === '#') {
+            backCount = backCount + 2;
+          }
         }
+      }
+      if(T[j] === '#') {
+        let backCount = 2;
+        while(backCount > 0){
+          j--;
+          backCount--;
+          if(T[j] === '#') {
+            backCount = backCount + 2;
+          }
+        }
+      }
+    } else {
+      if(S[i] !== T[j]) {
+        return false;
+      } else {
+        i--;
+        j--;
       }
     }
   }
+  return true;
 }
 
 ```
 
+## Given a string, find the length of the longest sub string without repeating characters.
+
+* Constraints 1: Is the substring contiguous: Yes, look for a substring not subsequence
+* Contigous means, Characters that show up are sequential and do not have any breaks.
+* Substring: "abcbbd" --> "abc"
+* SubSequence: "abcbbd" --> "abcd"
+
+
+* test case "abcbda" --> 4 for("cbda")
+
+### Working solution T = O(n ^ 2), S = O(n)
+```js
+const getlengthOfLongestSubString = function(s) {
+  if(s.length =< 1) return s.length;
+  let longestLength = 0;
+  for( let i = 0; i < s.length; i++){
+    const currentChars = {}, currentLength = 0;
+    for( let j = i; j < s.length; j++) {
+      const currentChar = s[j];
+      if(!currentChars[currentChar]){
+        currentChars[currentChar] = true;
+        currentLength++;
+        longestLength = Math.max(currentChar, longestLength);
+      } else {
+        break;
+      }
+    }
+  }
+  return longestLength;
+}
+```
+
+
+#### Sliding Window Technique
+From a window over some portion of sequential data, then move that window throughout the data to capture different parts of it.
+
+Simple Example is: Given an array of integers, find two contigious numbers that forms the greatest number.
+[1, 3, 7, 9, 2, 4]
+For this window will be of two integers, two pointers P1 and P2 will start from 1 and 3 respectively
+Then calculate the sum of values at P1 and P2, and move on until P2 and p1 reaches at the last.
+
+
+### Optimal Solution using Sliding Window: T O(N), S O(N)
+```js
+const getLengthOfLongestSubString = function(s) {
+  if(s.length =< 1) return s.length;
+  let longestLength = 0;
+  const seenChars = {};
+  let i = 0;
+  // for second pointer use for loop
+  for(let j = 0; j < s.length; j++){
+    let currentChar = s[j];
+    let previousSeenCharIndex = seenChars[currentChar];
+    // if alredy seen move the left pointer to (this value + 1)
+    if (previousSeenCharIndex >= i){
+      i = previousSeenCharIndex + 1;
+    }
+    seenChars[currentChar] = j; // store the latest index of current char
+    longestLength = Math.max(longestLength, (j - i) + 1);
+  }
+  return longestLength;
+}
+
+```
 
 
 
