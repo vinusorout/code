@@ -229,7 +229,20 @@ cont finalSol = function(S, T) {           // So O(2a+b) or O (a+2b) --> ignore 
 
 ```js
 // for single '#' move pointer -2, but for next concurrent move -2 + -1 and so on....
-
+const finalSol = function(S, T) {
+  let i = S.length - 1, j = T.length - 1;
+  while(i >= 0 || j >= 0) {
+    if(S[i] === '#' || T[j] === '#') {
+      if(S[i] === '#') {
+        let backCount = 2;
+        while(backCount > 0){
+          i--;
+          backCount--;
+        }
+      }
+    }
+  }
+}
 
 ```
 
