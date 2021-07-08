@@ -333,8 +333,49 @@ const getLengthOfLongestSubString = function(s) {
 ```
 
 
+## Palindromes
+A string that reads the same forwards and backwards. ex "aba", "a", "race car", ""   (Remove the extra chars like spave colon etc)
+```js
+const isValidPalindrome = function(s) {
+  s = s.replace(/[^A-Za-z0-9]/g, "").toLowerCase();
+  let left = 0; right = s.length - 1;
+  while(left < right) {
+    if(s[left] !== s[right]) {
+      return false;
+    }
+    left++'
+    right--;
+  }
+  return true;
+}
+```
 
+### Almost A Palindrome, removing one char makes it palindrome "abccdba" -->> remode "d" --> "abccba"
+```js
+var validPalindrome = function(s) {
+  let start = 0;
+  let end = s.length - 1;
+  while (start < end) {
+      if (s[start] !== s[end]) {
+          return validSubPalindrome(s, start + 1, end) || validSubPalindrome(s, start, end - 1);   // only one or both will be palindrome
+      }
+      start++;
+      end--;
+  }
+  return true;
+};
 
+var validSubPalindrome = function(s, start, end) {
+  while (start < end) {
+      if (s[start] !== s[end]) {
+          return false;
+      }
+      start++;
+      end--;
+  }
+  return true;
+};
+```
 
 
 
