@@ -314,7 +314,7 @@ Then calculate the sum of values at P1 and P2, and move on until P2 and p1 reach
 const getLengthOfLongestSubString = function(s) {
   if(s.length =< 1) return s.length;
   let longestLength = 0;
-  const seenChars = {};
+  const seenChars = {};  // NOTE: In javascript a new "map" is very faster than "object {}", calculations is still same but while running it will be faster.
   let i = 0;
   // for second pointer use for loop
   for(let j = 0; j < s.length; j++){
