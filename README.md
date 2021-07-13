@@ -434,6 +434,28 @@ const revreseLinkedList = function(head, m, n) {
   }
 ```
 
+## Merge Multi-Level Doubly linked list
+Statement: Given a doubly linked list, list nodes also have child property that can point to a separate doubly linked list. These child lists can also have one or more child doubly linked lists of their own, and son on. Return the list as a single level flattened doubly linked list.
+```js
+// class representing linked list of above statement
+class ListNode {
+  value: any;
+  prev: ListNode;
+  next: ListNode;
+  child: ListNode; // can be null of a refrence of another doubly linked list
+}
+```
+
+![image](https://user-images.githubusercontent.com/27411868/125462433-9db1de02-1453-473a-8f58-9bcf3201986c.png)
+
+After Solution:
+![image](https://user-images.githubusercontent.com/27411868/125462473-2e071836-031e-479e-b2c5-6e52411a670c.png)
+
+
+
+
+
+
 
 
 
