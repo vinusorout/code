@@ -378,6 +378,63 @@ var validSubPalindrome = function(s, start, end) {
 ```
 
 
+# Linked List
+
+## Reverse a given linked list. O(n) , S(1)
+```js
+  const revreseLinkedList = function(head) {
+    let currentNode = head;
+    let previousNode = null;
+    while(currentNode) {
+      let next = currentNode.next;
+      currentNode.next = previousNode;
+      previousNode = currentNode;
+      currentNode = next;
+    }
+    return previousNode;
+  }
+```
+
+## Given a linked list and numbers m and n, return it back with only position m to n in reverse.
+
+Let sya linked list is  1 --> 2 --> --> 3 --> 4 --> 5 --> 6 --> null, and m =2 and n = 4
+return 1 --> 4 --> 3 --> 2--> 5 --> 6 --> null
+
+```js
+const revreseLinkedList = function(head, m, n) {
+    let currentPosition = 1;
+    let currentNode = head;
+    let strt = head;
+    
+    // find the start node first, from where we need to start reverse
+    while(currentPosition < m) {
+      start = currentNode;
+      currentNode = currentNode.next;
+      currentPosition++;
+    }
+    // from above ex start will be = 1 and current Node = 2
+    
+    let newList = null, tail = currentNode; // tail value is start of the revresal. from above it will be 2.
+    
+    while(currentPosition >= m && currentPosition =< n) {
+      let next = currentNode.next;
+      currentNode.next = newList;
+      newList = currentNode;
+      currentNode = next;
+      currentPosition++;
+    }
+    // after this while currentNode will be 5, at the end of n
+    
+    // now link the list
+    start.next = newList;    // from above ex 1 will be linked to 4
+    tail.next = currentNode; // 2 will be linked to 5
+    
+    return previousNode;
+  }
+```
+
+
+
 
 
 
