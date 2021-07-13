@@ -398,6 +398,7 @@ var validSubPalindrome = function(s, start, end) {
 ## Given a linked list and numbers m and n, return it back with only position m to n in reverse.
 
 Let sya linked list is  1 --> 2 --> --> 3 --> 4 --> 5 --> 6 --> null, and m =2 and n = 4
+
 return 1 --> 4 --> 3 --> 2--> 5 --> 6 --> null
 
 ```js
@@ -429,7 +430,7 @@ const revreseLinkedList = function(head, m, n) {
     start.next = newList;    // from above ex 1 will be linked to 4
     tail.next = currentNode; // 2 will be linked to 5
     
-    return previousNode;
+    return m > 1 ? head : newList;
   }
 ```
 
