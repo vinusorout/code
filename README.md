@@ -451,7 +451,34 @@ class ListNode {
 After Solution:
 ![image](https://user-images.githubusercontent.com/27411868/125462473-2e071836-031e-479e-b2c5-6e52411a670c.png)
 
+```js
+var flatten = function (head) {
+  if (!head) return head;
 
+  let currentNode = head;
+  while (currentNode !== null) {
+    if (currentNode.child === null) {
+      currentNode = currentNode.next;
+    } else {
+      let tail = currentNode.child;
+      while (tail.next !== null) {
+        tail = tail.next;
+      }
+
+      tail.next = currentNode.next;
+      if (tail.next !== null) {
+        tail.next.prev = tail;
+      }
+
+      currentNode.next = currentNode.child;
+      currentNode.next.prev = currentNode;
+      currentNode.child = null;
+    }
+  }
+
+  return head;
+};
+```
 
 
 
