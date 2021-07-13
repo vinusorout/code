@@ -480,10 +480,54 @@ var flatten = function (head) {
 };
 ```
 
+## Linked List Cycle Detection:
+```js
+// T:O(n) S:O(n)
+const findCycle = function(head) {
+  let currentNode = head;
+  const seenNodes = new Set();
+  while(!seenNodes.has(currentNode)){
+    if(currentNode.next === null) {
+      return false;
+    }
+    seenNodes.add(currentNode);
+    currentNode = currentNode.next;
+  }
+  return currentNode;
+}
+```
+
+```js
+// O(n), S(1)
+// Using Floyd's Algo (Tortoise and Hare Algorithm)
+
+const findCycle = function(head) {
+  let hare = head, tortoise = head; // hare will move +2 and tortoise will move +1
+  // end the cycle if hare and tortoise meet or hare reach to null(tail)
+  while(true) {
+    hare = hare.next;
+    tortoise = tortoise.next;
+    if(hare === null || hare.next === null) {
+      return false;
+    } else {
+      hare = hare.next;
+    }
+    if(tortoise === hare) break;
+  }
+  
+  // find the node
+  let p1 = head; p2 = tortoise; // assign hare or tortoise as both are same here
+  while( p1 !== p2){
+    p1 = p1.next;
+    p2 = p2.next;
+  }
+  
+  return p1; // return either p1 or p2
+}
+```
 
 
-
-
+# Stacks
 
 
 
