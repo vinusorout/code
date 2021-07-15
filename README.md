@@ -529,8 +529,75 @@ const findCycle = function(head) {
 
 # Stacks
 
+## Given a string containing only parentheses, determine if it is valid. The string is valid if all parenthese close.
+
+* "{([])}" --> Valid
+* "{([)]}" --> Invalid
+
+```js
+const string = "{()[]}"
+
+const parens = {
+    '(': ')',
+    '{' : '}',
+    '[': ']'
+}
+
+var isValid = function(s) {
+  if(s.length === 0) return true;
+  
+  const stack = [];
+  
+  for(let i = 0; i < s.length; i++)  {
+    if(parens[s[i]]) {
+      stack.push(s[i]);
+    } else {
+      const leftBracket = stack.pop();
+      const correctBracket = parens[leftBracket];
+      if(s[i] !== correctBracket) return false
+    }
+  }
+  
+  return stack.length === 0;
+};
+
+console.log(isValid(string));
+```
+
+## Given a string only containing round brackets, and lowercase characters, remove the least amount of brackets so the string is valid. A string is considered valied if it is empty or if there are brackets, they all close.
+
+```js
+const string1 = "(ab(cd)"
+
+const minRemoveToMakeValid = function(str) {
+    const res = str.split('');
+    const stack = [];
+    
+    for (let i = 0; i < res.length; i++) {
+        if (res[i] === '(') {
+            stack.push(i);
+        } else if (res[i] === ')' && stack.length) {
+            stack.pop();
+        } else if (res[i] === ')') {
+            res[i] = ''
+        }
+    }
+    
+    while (stack.length) {
+        const curIdx = stack.pop();
+        res[curIdx] = '';
+    }
+    
+    return res.join('');
+};
+
+console.log(minRemoveToMakeValid(string1))
+```
 
 
+
+
+# Queues
 
 
 LeetCode
