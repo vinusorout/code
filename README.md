@@ -599,5 +599,44 @@ console.log(minRemoveToMakeValid(string1))
 
 # Queues
 
+## Implement the class queue using stacks, the queue method you need to impelement are enqueue, dequeue, peek and empty.
+
+```js
+class QueueWithStacks {
+  constructor() {
+    this.in = [];
+    this.out = [];
+  }
+
+  enqueue(val) {
+    this.in.push(val);
+  }
+
+  dequeue() {
+    if (this.out.length === 0) {
+      while(this.in.length > 0) {
+        this.out.push(this.in.pop());
+      }
+    }
+    
+    return this.out.pop();
+  }
+
+  peek() {
+    if (this.out.length === 0) {
+        while(this.in.length > 0) {
+            this.out.push(this.in.pop());
+        }
+    }
+    
+    return this.out[this.out.length - 1];
+  }
+
+  empty() {
+    return this.in.length === 0 && this.out.length === 0;
+  }
+};
+```
+
 
 LeetCode
