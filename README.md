@@ -655,27 +655,27 @@ const swap = function (array, i, j) {
   array[j] = temp;
 };
 
-const getPartition = function (nums, left, right) {
-  const pivotElement = nums[right];
-  let partitionIdx = left;
+const getPartition = function (nums, left, right) { //[5,3,1,6,4,2], 0, 5 --> second call [1,2,5,6,4,3], 2, 5  --> [1,2,3,6,4,5], 3, 5
+  const pivotElement = nums[right]; // 2 --> 3 --> 5
+  let partitionIdx = left; // 0 --> 2 --> 3
 
   for (let j = left; j < right; j++) {
-    if (nums[j] <= pivotElement) {
-      swap(nums, partitionIdx, j);
-      partitionIdx++;
+    if (nums[j] <= pivotElement) { // when j = 2, for secodn --> no entry in if --> when j = 4 swap 3 and 4 [1,2,3,4,6,5]
+      swap(nums, partitionIdx, j); // [1,3,5,6,4,2]
+      partitionIdx++; // 1 --> --> on third 4
     }
   }
-  swap(nums, partitionIdx, right)
+  swap(nums, partitionIdx, right) // [1,2,5,6,4,3] --> [1,2,3,6,4,5] --> [1,2,3,4,5,6]
 
-  return partitionIdx;
+  return partitionIdx; // 1 --> 2 --> 4
 };
 
 const quickSort = function (nums, left, right) {
   if(left < right) {
-    const partitionIndex = getPartition(nums, left, right);
+    const partitionIndex = getPartition(nums, left, right); // 1 --> 2
 
-    quickSort(nums, left, partitionIndex - 1);
-    quickSort(nums, partitionIndex + 1, right);
+    quickSort(nums, left, partitionIndex - 1); // left 0, right 0 will simplly return [1,2,5,6,4,3] --> again return as left left = 2 right = 1 [1,2,3,6,4,5]
+    quickSort(nums, partitionIndex + 1, right); // left 2, right 5 --> left 3 right 5
   }
 };
 
