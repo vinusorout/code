@@ -271,6 +271,8 @@ const finalSol = function(S, T) {
 
 * Constraints 1: Is the substring contiguous: Yes, look for a substring not subsequence
 * Contigous means, Characters that show up are sequential and do not have any breaks.
+<img width="545" alt="image" src="https://user-images.githubusercontent.com/27411868/157099003-fa642651-117d-41f2-995c-4396487cd8f3.png">
+
 * Substring: "abcbbd" --> "abc"
 * SubSequence: "abcbbd" --> "abcd"
 
