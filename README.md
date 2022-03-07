@@ -398,6 +398,7 @@ var validSubPalindrome = function(s, start, end) {
 ```
 
 ## Given a linked list and numbers m and n, return it back with only position m to n in reverse.
+### reverse the list from m to n only. m, and n are not index that starts from 0. so while sol consider m-1 and n-1
 
 Let sya linked list is  1 --> 2 --> --> 3 --> 4 --> 5 --> 6 --> null, and m =2 and n = 4
 
