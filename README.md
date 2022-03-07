@@ -433,7 +433,7 @@ const revreseLinkedList = function(head, m, n) {
     start.next = newList;    // from above ex 1 will be linked to 4
     tail.next = currentNode; // 2 will be linked to 5
     
-    return m > 1 ? head : newList;
+    return m > 1 ? head : newList; // because when m=1 head become the tail of the sub reversed list
   }
 ```
 
