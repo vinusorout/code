@@ -291,7 +291,7 @@ const getlengthOfLongestSubString = function(s) {
       if(!currentChars[currentChar]){
         currentChars[currentChar] = true;
         currentLength++;
-        longestLength = Math.max(currentChars.length, longestLength);
+        longestLength = Math.max(currentLength, longestLength);
       } else {
         break;
       }
